@@ -5,15 +5,6 @@ const logger = require('morgan');
 const cors = require('cors');
 const app = express();
 
-// Import Routes
-const productsRoute = require('./routes/products');
-// const usersRoute = require('./routes/users');
-const orderRouter = require('./routes/orders');
-
-//USe Routes
-app.use('/api/products', productsRoute)
-// app.use('/api/users', usersRoute)
-app.use('/api/orders', orderRouter);
 
 app.use(cors({
     origin:"*",
@@ -23,9 +14,19 @@ app.use(cors({
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Import Routes
+const productsRoute = require('./routes/products');
+// const usersRoute = require('./routes/users');
+const orderRouter = require('./routes/orders');
+
+//USe Routes
+app.use('/api/products', productsRoute)
+// app.use('/api/users', usersRoute)
+app.use('/api/orders', orderRouter);
 
 module.exports = app;

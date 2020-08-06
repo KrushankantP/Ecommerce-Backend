@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const {database} = require('../config/helpers');
-const crypto = require('crypto');
 
 // GET ALL ORDERS
 router.get('/', (req, res) => {
@@ -68,13 +67,12 @@ router.get('/:id', async (req, res) => {
 
 // Place New Order
 router.post('/new', async (req, res) => {
-    // let userId = req.body.userId;
-    // let data = JSON.parse(req.body);
-    let {userId, products} = req.body;
+
+    const {userId, products} = req.body;
     console.log(userId);
     console.log(products);
 
-    if (userId !== null && userId > 0) {
+    if (userId !== null && userId > 0 && !isNaN(userId)) {
         database.table('orders')
             .insert({
                 user_id: userId
@@ -140,10 +138,6 @@ router.post('/payment', (req, res) => {
         res.status(200).json({success: true});
     }, 3000)
 });
-
-
-
-
 
 
 module.exports = router;
