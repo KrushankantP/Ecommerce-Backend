@@ -8,10 +8,12 @@ const app = express();
 // Import Routes
 const productsRoute = require('./routes/products');
 const usersRoute = require('./routes/users');
+const orderRouter = require('./routes/orders');
 
 //USe Routes
 app.use('/api/products', productsRoute)
 app.use('/api/users', usersRoute)
+app.use('/api/orders', orderRouter);
 
 app.use(cors({
     origin:"*",
