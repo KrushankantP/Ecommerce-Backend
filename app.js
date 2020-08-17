@@ -5,7 +5,7 @@ const logger = require('morgan');
 const cors = require('cors');
 const app = express();
 
-
+// CORS
 app.use(cors({
     origin:"*",
     methods: ['GET', 'PUT', 'DELETE', 'PATCH', 'POST'],
@@ -21,12 +21,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Import Routes
 const productsRoute = require('./routes/products');
-// const usersRoute = require('./routes/users');
 const orderRouter = require('./routes/orders');
+const authRouter = require('./routes/auth');
 
 //Use Routes
 app.use('/api/products', productsRoute)
-// app.use('/api/users', usersRoute)
 app.use('/api/orders', orderRouter);
+app.use('/api/auth', authRouter);
 
 module.exports = app;
