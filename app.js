@@ -24,7 +24,7 @@ const productsRoute = require('./routes/products');
 // const usersRoute = require('./routes/users');
 const orderRouter = require('./routes/orders');
 
-//USe Routes
+//Use Routes
 app.use('/api/products', productsRoute)
 // app.use('/api/users', usersRoute)
 app.use('/api/orders', orderRouter);
